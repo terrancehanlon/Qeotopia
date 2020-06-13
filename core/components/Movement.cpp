@@ -27,10 +27,10 @@ void Movement::stop(AnimatedSprite *ani, float x, float y){
     landed = true;
     this->last_y = y;
 }
-void Movement::move(sf::Time deltaTime,AnimatedSprite *ani, sf::View *view){
+sf::Vector2f Movement::move(sf::Time deltaTime,AnimatedSprite *ani, sf::View *view){
     this->_movement.x = 0.0f;
     this->_movement.y = 0.0f;
-    if(ani->getPosition().y < 360 && !landed){
+    if(ani->getPosition().y < this->ground && !landed){
         this->falling = true;
     }
     else{
@@ -38,11 +38,11 @@ void Movement::move(sf::Time deltaTime,AnimatedSprite *ani, sf::View *view){
     }
     if(ani->getPosition().y <= (this->last_y - this->jumpHeight) && !landed){ //lands on platform
         isJumping = false;
-    }else if (ani->getPosition().y >= 360)
+    }else if (ani->getPosition().y >= this->ground)
     {   
         falling = false;
         landed = false;
-        ani->setPosition(sf::Vector2f(ani->getPosition().x, 360));
+        ani->setPosition(sf::Vector2f(ani->getPosition().x, this->ground));
         // ani->move(this->_movement)
         last_y = ani->getPosition().y;
     }
@@ -101,9 +101,15 @@ void Movement::move(sf::Time deltaTime,AnimatedSprite *ani, sf::View *view){
         }
     }
 
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::U)){
+        printf("X: %f\n", ani->getPosition().x);
+        printf("Y: %f\n", ani->getPosition().y);
+    }
+
     ani->move(this->_movement);
     view->move(this->movement);
     view->setCenter(ani->getPosition().x, ani->getPosition().y);
+    return this->movement;
     // view->zoom(3.0f);
 }
 
