@@ -24,7 +24,7 @@ class Movement {
         void resetMovement();
         void backPeddle(AnimatedSprite *ani) ;
 
-        float jumpHeight = 150.0f;
+        float jumpHeight = 50.0f;
         void stop(AnimatedSprite *ani, float x, float y);
 
         bool isJumping = false;

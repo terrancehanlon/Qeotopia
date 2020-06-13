@@ -39,7 +39,7 @@ void ActiveState::update(sf::Time dt){
     this->healthcomp->updateHealth(&this->player->ani);
     this->healthBar->update(dt, this->healthcomp);
     // this->healthBar->ani.move(tmp);
-    this->healthBar->move(this->tmp, this->player->ani.getPosition());
+    this->healthBar->move(this->tmp, sf::Vector2f(getPlayerX() - 115, getPlayerY() - 123));
     this->player->update(dt);
     this->zones.at(0)->update(dt, &this->player->ani, this->movementComp);
 
