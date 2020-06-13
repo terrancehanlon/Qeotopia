@@ -35,3 +35,8 @@ void HealthBar::update(sf::Time dt, Health *healthcomp){
 
     this->ani.update(dt);
 };
+
+void HealthBar::move(sf::Vector2f movement, sf::Vector2f position){
+    this->ani.setPosition(position);
+    this->ani.move(movement);
+}

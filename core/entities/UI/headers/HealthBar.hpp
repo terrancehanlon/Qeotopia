@@ -21,6 +21,8 @@ class HealthBar {
         void update(sf::Time dt, Health *healthcomp);
         void draw(sf::RenderWindow *window);    
 
+        void move(sf::Vector2f movement, sf::Vector2f position);
+
 };
 
 

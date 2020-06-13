@@ -22,6 +22,8 @@ class ActiveState {
         std::vector<Zone*> zones;
         sf::View *view;
 
+        sf::Vector2f tmp;
+
         float getPlayerX();
         float getPlayerY();
 

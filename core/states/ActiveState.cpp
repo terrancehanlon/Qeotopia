@@ -3,12 +3,12 @@
 
 ActiveState::ActiveState(){
     this->player = new Entity();
-    this->movementComp = new Movement(0.055f);
+    this->movementComp = new Movement(0.15f);
     ZoneOne* z1 = new ZoneOne();
     z1->win = this->win;
     this->zones.push_back(z1);
     this->zones.at(0)->win = this->win;
-    this->player->ani.setPosition(sf::Vector2f(0.79,359.03));
+    this->player->ani.setPosition(sf::Vector2f(75.0f,285.03f)); //start location
 
     this->healthBar = new HealthBar();
     this->healthcomp = new Health();
@@ -16,7 +16,7 @@ ActiveState::ActiveState(){
     //sf::View view;
     this->view = new sf::View();
     this->view->setCenter(this->getPlayerX(),this->getPlayerY());
-    this->view->zoom(0.65f);
+    this->view->zoom(0.25f);
 
     //view.reset(sf::FloatRect(100,100,400,200));
     //this->win->setView(view);
@@ -35,9 +35,11 @@ float ActiveState::getPlayerY(){
 }
 
 void ActiveState::update(sf::Time dt){
-    this->movementComp->move(dt, &this->player->ani, this->view);
+    this->tmp = this->movementComp->move(dt, &this->player->ani, this->view);
     this->healthcomp->updateHealth(&this->player->ani);
     this->healthBar->update(dt, this->healthcomp);
+    // this->healthBar->ani.move(tmp);
+    this->healthBar->move(this->tmp, this->player->ani.getPosition());
     this->player->update(dt);
     this->zones.at(0)->update(dt, &this->player->ani, this->movementComp);
 
