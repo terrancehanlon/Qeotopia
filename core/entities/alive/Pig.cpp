@@ -56,5 +56,11 @@ void Pig::move(){
     else{
         //do nothing
     }
-}
+};
+
+void Pig::set_clock(){
+    this->did_hit = true;
+    this->last_collide = sf::Clock();
+};
+
 

@@ -25,6 +25,8 @@ class Zone{
         bool checkPlayerConstraint(AnimatedSprite *player);
         bool checkPlayerPlatformCollide(AnimatedSprite *player);
 
+        sf::Clock last_collide;
+
 
         float platformLoc[2]; //coords of the platform that the player collids with
 };

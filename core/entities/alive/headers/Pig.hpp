@@ -25,6 +25,11 @@ class Pig {
         void stay();
 
         void move();
+
+        sf::Clock last_collide;
+
+        void set_clock();
+        bool did_hit = false;
 };
 
 

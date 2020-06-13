@@ -52,24 +52,35 @@ void Zone::update(sf::Time deltaTime, AnimatedSprite *player, Movement *move){
         if(p->ani.getGlobalBounds().intersects(player->getGlobalBounds())){
             // printf("STAYING \n");
             p->stay();
-            if(player->get_last_hit().asSeconds() > 2){
-                player->hit(1);
-                player->setColor(sf::Color::Red);
-                // player->getCol
-                printf("HIT For damage\n");
+            if(p->did_hit){
+                if(player->get_last_hit().asSeconds() > 2){
+                    if(p->last_collide.getElapsedTime().asSeconds() > 1.5){
+                        //if the pigs attack cooldown is up
+                        //if the pig has sat long enough on the player to trigger damage
+                        player->hit(1);
+                        player->setColor(sf::Color::Red);
+                        // player->getCol
+                        printf("HIT For damage\n");
+                    }
+                }
+                else{
+                    // player->setColor(sf::Color::White);
+                    // player->setColor(sf::Color::Transparent);
+                    // printf("NO DAMAGE\n");  
+                }
             }
             else{
-                // player->setColor(sf::Color::White);
-                // player->setColor(sf::Color::Transparent);
-                // printf("NO DAMAGE\n");
+                p->set_clock();
             }
         }
         else if (p->ani.getPosition().x < player->getPosition().x){
             p->right();
+            p->did_hit = false;
             // printf("RIGHT");
         }
         else if(p->ani.getPosition().x > player->getPosition().x){
             p->left();
+            p->did_hit = false;
             // printf("LEFT\n");
         }
         p->update(deltaTime);
