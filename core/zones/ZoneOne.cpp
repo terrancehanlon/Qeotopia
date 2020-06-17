@@ -18,10 +18,10 @@ ZoneOne::ZoneOne(){
     // view.reset(sf::FloatRect(100,100,400,200));
     // view.setCenter(0,0);
     // this->win->setView(view);
-    this->doors.push_back(new Door(907.0, 285.03));
+    this->doors.push_back(new Door(907.0, 258.03));
 
-    // this->platforms.push_back(new Platform(50, 315));
-    // this->platforms.push_back(new Platform(350, 260));
+    this->platforms.push_back(new Platform(1050, 245));
+    this->platforms.push_back(new Platform(2075, 225));
     
     Pig *pig1 = new Pig(150, 285.03);
     pig1->left();
