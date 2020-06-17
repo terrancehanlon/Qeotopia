@@ -6,6 +6,7 @@
 #include <string>
 #include <stack>
 #include "../../zones/headers/ZoneOne.hpp"
+#include "../../components/headers/Ability.hpp"
 class ActiveState {
 
     public:
@@ -18,6 +19,7 @@ class ActiveState {
         ActiveState();
         Movement *movementComp;
         Health *healthcomp;
+        Ability *abilityComp;
         
         std::vector<Zone*> zones;
         sf::View *view;
