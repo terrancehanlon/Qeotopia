@@ -142,6 +142,10 @@ void AnimatedSprite::setFrame(std::size_t newFrame, bool resetTime)
         m_currentTime = sf::Time::Zero;
 }
 
+std::size_t AnimatedSprite::get_current_frame()
+{
+    return this->m_currentFrame;
+};
 void AnimatedSprite::update(sf::Time deltaTime)
 {
     // if not paused and we have a valid animation
@@ -175,7 +179,6 @@ void AnimatedSprite::update(sf::Time deltaTime)
 
             }
 
-            // set the current frame, not reseting the time
             setFrame(m_currentFrame, false);
         }
     }

@@ -60,6 +60,7 @@ public:
 
     void hit(int damage);
     sf::Time get_last_hit();
+    std::size_t get_current_frame();
 
 private:
 
