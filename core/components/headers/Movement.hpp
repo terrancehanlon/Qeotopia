@@ -1,9 +1,10 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
+#pragma once
 // #include "ZoneOne.hpp"
 #include "../../entities/structural/headers/Platform.hpp"
-
+// #include "../../entities/alive/headers/Entity.hpp"
 #include <math.h>
 
 class Movement {
@@ -16,7 +17,7 @@ class Movement {
         Movement(float movementSpeed);
         ~Movement();
 
-        sf::Vector2f move(sf::Time deltaTime, AnimatedSprite *ani, sf::View *view);
+        void move(sf::Time deltaTime, AnimatedSprite *ani, sf::View *view);
         float getPlayerX(AnimatedSprite *ani);
         float getPlayerY(AnimatedSprite *ani);
         void setMove(sf::Vector2f *movement);
@@ -34,8 +35,8 @@ class Movement {
         bool falling = false;
 
         sf::Vector2f _movement;
-        float last_y = 285.03f ; //360 is current ground probably make this a variable
-        float ground = 285.03f;
+        float last_y = 280.03f ; //360 is current ground probably make this a variable
+        float ground = 280.03f;
 };
 
 #endif

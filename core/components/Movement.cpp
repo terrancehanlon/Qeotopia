@@ -27,7 +27,8 @@ void Movement::stop(AnimatedSprite *ani, float x, float y){
     landed = true;
     this->last_y = y;
 }
-sf::Vector2f Movement::move(sf::Time deltaTime,AnimatedSprite *ani, sf::View *view){
+void Movement::move(sf::Time deltaTime, AnimatedSprite *ani, sf::View *view){
+    // ani = new Entity();
     this->_movement.x = 0.0f;
     this->_movement.y = 0.0f;
     if(ani->getPosition().y < this->ground && !landed){
@@ -109,7 +110,6 @@ sf::Vector2f Movement::move(sf::Time deltaTime,AnimatedSprite *ani, sf::View *vi
     ani->move(this->_movement);
     view->move(this->movement);
     view->setCenter(ani->getPosition().x, ani->getPosition().y);
-    return this->movement;
     // view->zoom(3.0f);
 }
 
