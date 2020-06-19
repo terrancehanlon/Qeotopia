@@ -32,16 +32,11 @@ Entity::Entity(){
 };
 
 void Entity::swing(){
-    // this->ani.move(sf::Vector2f(0.00f, -0.50f));
-    printf("swinging\n");
     this->ani.is_attacking = true;
     this->current_animation = &this->attack;
 };
 
 void Entity::run(){
-    // ani.setAnimation(this->anim);
-    // this->ani.move(sf::Vector2f(0.00f, 5.0f));
-    printf("Running\n");
     this->ani.is_attacking = false;
     this->current_animation = &this->anim;
 
