@@ -47,19 +47,22 @@ void Zone::update(sf::Time deltaTime, AnimatedSprite *player, Movement *move){
     }
 
     for(int i = 0; i < this->pigs.size(); i++) {
-        Pig *p = this->pigs.at(i);
+        Pig* pig = this->pigs.at(i);
+
+        if(pig->is_dead){
+            this->pigs.erase(this->pigs.begin() + (i));
+            continue;
+        }
         
-        if(p->ani.getGlobalBounds().intersects(player->getGlobalBounds())){
-            // printf("STAYING \n");
-            p->stay();
-            if(p->did_hit){
+        if(pig->ani.getGlobalBounds().intersects(player->getGlobalBounds())){
+            pig->stay();
+            if(pig->did_hit){ //pig collided with player
                 if(player->get_last_hit().asSeconds() > 2){
-                    if(p->last_collide.getElapsedTime().asSeconds() > 1.5){
+                    if(pig->last_collide.getElapsedTime().asSeconds() > 1.5){
                         //if the pigs attack cooldown is up
                         //if the pig has sat long enough on the player to trigger damage
                         player->hit(1);
                         player->setColor(sf::Color::Red);
-                        // player->getCol
                         printf("HIT For damage\n");
                     }
                 }
@@ -70,24 +73,30 @@ void Zone::update(sf::Time deltaTime, AnimatedSprite *player, Movement *move){
                 }
             }
             else{
-                p->set_clock(true);
+                pig->set_clock(true);
             }
             if(player->is_attacking){
-                p->ani.setColor(sf::Color::Red);
-                p->set_clock(false);
+                if(pig->last_struck.getElapsedTime().asSeconds() < 1.0){
+                    // pig->ani.setColor(sf::Color::White);
+                    // pig->ani.hit(1); //here could set damage
+                }else{
+                    pig->set_clock(false); //false to set pig GOT hit flag
+                    pig->ani.hit(1);
+                    pig->ani.setColor(sf::Color::Red);
+                }
             }
         }
-        else if (p->ani.getPosition().x < player->getPosition().x){
-            p->right();
-            p->did_hit = false;
+        else if (pig->ani.getPosition().x < player->getPosition().x){
+            pig->right();
+            pig->did_hit = false;
             // printf("RIGHT");
         }
-        else if(p->ani.getPosition().x > player->getPosition().x){
-            p->left();
-            p->did_hit = false;
+        else if(pig->ani.getPosition().x > player->getPosition().x){
+            pig->left();
+            pig->did_hit = false;
             // printf("LEFT\n");
         }
-        p->update(deltaTime);
+        pig->update(deltaTime);
     }
 };
 

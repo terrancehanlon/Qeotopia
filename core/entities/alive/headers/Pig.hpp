@@ -31,6 +31,7 @@ class Pig {
 
         void set_clock(bool is_colliding);
         bool did_hit = false;
+        bool is_dead = false;
 };
 
 

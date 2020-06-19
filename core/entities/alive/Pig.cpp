@@ -15,19 +15,24 @@ Pig::Pig(float x, float y){
     this->ani.setAnimation(this->anim_run);
 
     this->ani.play(this->anim_run);
+    this->ani.set_health(3);
     printf("Creating pig\n");
 };
 
-Pig::~Pig(){}; //do this when we need to advanced to the other zone or when they get killed or no longer needed
+Pig::~Pig(){
+}; //do this when we need to advanced to the other zone or when they get killed or no longer needed
 
 
 void Pig::update(sf::Time dt){
     if(this->last_struck.getElapsedTime().asSeconds() >= 0.5){
         this->ani.setColor(sf::Color::White);
     }
-    // this->ani.setColor(sf::Color::White);
     this->move();
     this->ani.update(dt);
+
+    if(this->ani.get_current_health() <= 0){
+        this->is_dead = true;
+    }
 };
 
 void Pig::draw(sf::RenderWindow *window){
