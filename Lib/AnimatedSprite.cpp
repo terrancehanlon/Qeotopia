@@ -209,9 +209,9 @@ void AnimatedSprite::set_health(int health){
 };
 
 void AnimatedSprite::hit(int damage){
-    if(this->current_health - damage <= 0){
-        this->current_health = 1; //change to zero at one point (when anim is added)
-    }
+    // if(this->current_health - damage <= 0){
+    //     this->current_health = 1; //change to zero at one point (when anim is added)
+    // }
     this->current_health = (this->current_health) - damage;
     this->last_hit = sf::Clock();
 };
