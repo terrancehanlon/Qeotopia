@@ -24,9 +24,17 @@ ZoneOne::ZoneOne(){
     this->platforms.push_back(new Platform(2075, 225));
     
     Pig *pig1 = new Pig(150, 285.03);
+    Pig *pig2 = new Pig(360, 285.03);
+    Pig *pig3 = new Pig(170, 285.03);
+    Pig *pig4 = new Pig(880, 285.03);
+    Pig *pig5 = new Pig(1190, 285.03);
     pig1->left();
 
     this->pigs.push_back(pig1);
+    this->pigs.push_back(pig2);
+    this->pigs.push_back(pig3);
+    this->pigs.push_back(pig4);
+    this->pigs.push_back(pig5);
 
     // this->door->idle();
 }

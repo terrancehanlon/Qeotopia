@@ -15,7 +15,7 @@ Pig::Pig(float x, float y){
     this->ani.setAnimation(this->anim_run);
 
     this->ani.play(this->anim_run);
-    this->ani.set_health(3);
+    this->ani.set_health(1);
     printf("Creating pig\n");
 };
 
@@ -57,10 +57,10 @@ void Pig::right(){
 
 void Pig::move(){
     if(this->direction == 1){
-        this->ani.move(sf::Vector2f(0.005f, 0.0f));
+        this->ani.move(sf::Vector2f(0.015f, 0.0f));
     }
     else if(this->direction == -1){
-        this->ani.move(sf::Vector2f(-0.005f, 0.0f));
+        this->ani.move(sf::Vector2f(-0.015f, 0.0f));
     }
     else{
         //do nothing
