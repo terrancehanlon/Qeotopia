@@ -37,6 +37,7 @@ class Entity
         int currentHealth = 3;
 
         Animation *current_animation;
+        bool is_attacking = false;
 
 
 

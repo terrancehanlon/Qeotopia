@@ -70,7 +70,11 @@ void Zone::update(sf::Time deltaTime, AnimatedSprite *player, Movement *move){
                 }
             }
             else{
-                p->set_clock();
+                p->set_clock(true);
+            }
+            if(player->is_attacking){
+                p->ani.setColor(sf::Color::Red);
+                p->set_clock(false);
             }
         }
         else if (p->ani.getPosition().x < player->getPosition().x){

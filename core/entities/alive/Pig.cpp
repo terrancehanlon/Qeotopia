@@ -22,6 +22,10 @@ Pig::~Pig(){}; //do this when we need to advanced to the other zone or when they
 
 
 void Pig::update(sf::Time dt){
+    if(this->last_struck.getElapsedTime().asSeconds() >= 0.5){
+        this->ani.setColor(sf::Color::White);
+    }
+    // this->ani.setColor(sf::Color::White);
     this->move();
     this->ani.update(dt);
 };
@@ -58,9 +62,14 @@ void Pig::move(){
     }
 };
 
-void Pig::set_clock(){
-    this->did_hit = true;
-    this->last_collide = sf::Clock();
+void Pig::set_clock(bool is_colliding){
+    if(is_colliding){
+        this->did_hit = true;
+        this->last_collide = sf::Clock();
+    }
+    else{
+        this->last_struck = sf::Clock();
+    }
 };
 
 
