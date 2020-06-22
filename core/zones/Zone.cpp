@@ -57,8 +57,8 @@ void Zone::update(sf::Time deltaTime, AnimatedSprite *player, Movement *move){
         if(pig->ani.getGlobalBounds().intersects(player->getGlobalBounds())){
             pig->stay();
             if(pig->did_hit){ //pig collided with player
-                if(player->get_last_hit().asSeconds() > 2){
-                    if(pig->last_collide.getElapsedTime().asSeconds() > 1.5){
+                if(player->get_last_hit().asSeconds() > 0.5f){
+                    if(pig->last_collide.getElapsedTime().asSeconds() > this->hit_cooldown){
                         //if the pigs attack cooldown is up
                         //if the pig has sat long enough on the player to trigger damage
                         player->hit(1);

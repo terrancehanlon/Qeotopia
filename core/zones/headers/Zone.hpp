@@ -27,6 +27,8 @@ class Zone{
 
         sf::Clock last_collide;
 
+        float hit_cooldown = 0.5f;
+
 
         float platformLoc[2]; //coords of the platform that the player collids with
 };
