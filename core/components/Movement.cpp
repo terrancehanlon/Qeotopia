@@ -57,7 +57,7 @@ void Movement::move(sf::Time deltaTime, AnimatedSprite *ani, sf::View *view){
     if(!isJumping && !landed){
         // ani->move(sf::Vector2f(0.0f, 0.05f));
         //falling
-        this->_movement.y += this->movementSpeed; //change to falling speed
+        this->_movement.y += 0.150f; //change to falling speed
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -86,6 +86,8 @@ void Movement::move(sf::Time deltaTime, AnimatedSprite *ani, sf::View *view){
              this->_movement.x += this->movementSpeed;
         }
 
+        this->moveView = true;
+
     }
 
     if(!landed && sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -99,7 +101,9 @@ void Movement::move(sf::Time deltaTime, AnimatedSprite *ani, sf::View *view){
         if(this->lastJump.getElapsedTime().asSeconds() >= 0.5){
             isJumping = true;
             this->lastJump.restart();  
+            this->moveView = false;
         }
+
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::U)){
@@ -108,8 +112,10 @@ void Movement::move(sf::Time deltaTime, AnimatedSprite *ani, sf::View *view){
     }
 
     ani->move(this->_movement);
-    view->move(this->movement);
-    view->setCenter(ani->getPosition().x, ani->getPosition().y);
+    if(this->moveView){
+        view->move(this->movement);
+        view->setCenter(ani->getPosition().x, ani->getPosition().y);
+    }
     // view->zoom(3.0f);
 }
 

@@ -57,8 +57,8 @@ all:
 	$(g) Lib/Imports.cpp -o target/Imports.o
 	$(g) Lib/Animation.cpp -o target/Animation.o
 	$(g) Lib/AnimatedSprite.cpp -o target/AnimatedSprite.o
-	$(g) core/components/Health.cpp -o target/Health.o 
 	$(g) core/components/Movement.cpp -o target/Movement.o
+	$(g) core/components/Health.cpp -o target/Health.o 
 	$(g) core/components/Ability.cpp -o target/Ability.o
 	$(g) core/entities/structural/Platform.cpp -o target/Platform.o 
 	$(g) core/entities/UI/HealthBar.cpp -o target/HealthBar.o

@@ -12,6 +12,7 @@ class Movement {
     private:
         float movementSpeed = 501.90f;
         sf::Vector2f movement;
+        bool moveView = true;;
 
     public:
         Movement(float movementSpeed);
